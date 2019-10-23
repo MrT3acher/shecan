@@ -1,0 +1,45 @@
+#!/bin/sh
+
+RESOLV="/etc/resolv.conf"
+RVBACK="/etc/resolv.conf.bak"
+NULL="/dev/null"
+
+ns1="nameserver 178.22.122.100"
+ns2="nameserver 185.51.200.2"
+
+nsexist() {
+	cat $RESOLV | grep "$1" > $NULL
+	return $?
+}
+isactivated() {
+	if nsexist "$ns1" || nsexist "$ns2"; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+case $1 in
+	active)
+		if isactivated; then
+			echo "Shecan is already activated"	
+		else	
+			cp $RESOLV $RVBACK
+			echo "nameserver 178.22.122.100
+nameserver 185.51.200.2
+`cat $RESOLV`" > $RESOLV	
+			echo "Shecan activated"
+		fi
+		;;
+	deactive)
+		if isactivated; then
+			cp $RVBACK $RESOLV
+			echo "Shecan deactivated"
+		else
+			echo "Shecan is not activated"
+		fi
+		;;
+	*)
+		echo "Usage: shecan [active|deactive]"
+		;;
+esac
