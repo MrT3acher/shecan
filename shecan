@@ -11,7 +11,7 @@ nsexist() {
 	cat $RESOLV | grep "$1" > $NULL
 	return $?
 }
-isactivated() {
+isenabled() {
 	if nsexist "$ns1" || nsexist "$ns2"; then
 		return 0
 	else
@@ -20,26 +20,26 @@ isactivated() {
 }
 
 case $1 in
-	active)
-		if isactivated; then
-			echo "Shecan is already activated"	
+	enable)
+		if isenabled; then
+			echo "Shecan is already enabled"	
 		else	
 			cp $RESOLV $RVBACK
 			echo "nameserver 178.22.122.100
 nameserver 185.51.200.2
 `cat $RESOLV`" > $RESOLV	
-			echo "Shecan activated"
+			echo "Shecan enabled"
 		fi
 		;;
-	deactive)
-		if isactivated; then
+	disable)
+		if isenabled; then
 			cp $RVBACK $RESOLV
-			echo "Shecan deactivated"
+			echo "Shecan disabled"
 		else
-			echo "Shecan is not activated"
+			echo "Shecan is not enabled"
 		fi
 		;;
 	*)
-		echo "Usage: shecan [active|deactive]"
+		echo "Usage: shecan [enable|disable]"
 		;;
 esac

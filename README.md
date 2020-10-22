@@ -1,17 +1,25 @@
-# shecan
-## install
-this is just a simple sh script. you just need to download it somewhere and run it using sh `sh ./shecan` or change its premission to executable `chmod +x sehcan` and use `./shecan`.
+# Shecan
+## Install
+### Linux
 
-also you can copy this executable script to one of your $PATH pathes and simply use it like other command (`shecan`).
-## usage
-You can **active** sanction bypassing using this command:
+This is just a simple sh script. you just need to download it somewhere and run it using sh `sh ./shecan` or change its permission to executable `chmod +x sehcan` and use `./shecan`.
+
+### Windows
+
+Just open CMD or PowerShell or ... **as Administrator** and use shecan.bat as described in [usage section](#usage).
+
+
+
+also you can copy this script to one of your $PATH pathes and simply use it like other command (`shecan`).
+## Usage
+You can **enable** sanction bypassing using this command:
 ```
-shecan active
+shecan enable
 ```
-and **deactive** it this way:
+and **disable** it this way:
 ```
-shecan deactive
+shecan disable
 ```
 
-## denote
+## Denote
 this is my **denote** to [the owner](https://shecan.ir/)
